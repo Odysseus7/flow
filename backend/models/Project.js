@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
-const uuid = require("uuid");
+var AutoIncrement = require('mongoose-sequence')(mongoose);
+
 const { Schema } = mongoose;
 
 const projectSchema = new Schema({
-    _id: {type: String, default: uuid.v4() },
+    _id: Number,
     name: String,
     description: String,
     img: Array,
     githubURL: String,
     status: String
 });
+
+projectSchema.plugin(AutoIncrement, {inc_field: "_id"})
 
 mongoose.model('projects', projectSchema); // load into mongoose
