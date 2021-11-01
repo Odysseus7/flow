@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 
 const projectsRouter = require('./routes/projects');
-const usersRouter = require('./routes/users');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -17,7 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/projects', projectsRouter);
-
 
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
