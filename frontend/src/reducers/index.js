@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
+import darkModeReducer from './darkModeReducer';
 import projectsReducer from './projectsReducer';
 
 
 export default combineReducers({
-    projects: projectsReducer
+    projects: projectsReducer,
+    darkMode: darkModeReducer
 });
