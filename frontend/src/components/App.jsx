@@ -14,14 +14,16 @@ import Home from './home/Home';
 class App extends Component {
     render() {
         const darkMode = JSON.parse(window.localStorage.getItem("darkMode"));
+        var body = document.querySelector('body');
+        body.setAttribute("data-theme", `${darkMode ? "dark" : "light"}`);
+
         return (
-            <div class="App" data-theme={darkMode ? "dark" : "light"} >
-                {/* <GlobalStyles /> */}
-                    <ThemeButton onClick={ darkMode ? this.props.darkModeOff : this.props.darkModeOn } darkMode={this.props.darkMode} />
-                    <BrowserRouter>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/projects" component={ProjectList} />
-                    </BrowserRouter>
+            <div class="App">
+                <ThemeButton onClick={ darkMode ? this.props.darkModeOff : this.props.darkModeOn } darkMode={this.props.darkMode} />
+                <BrowserRouter>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/projects" component={ProjectList} />
+                </BrowserRouter>
             </div>
         );
     }
