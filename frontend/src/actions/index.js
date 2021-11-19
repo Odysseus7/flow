@@ -1,5 +1,3 @@
-// import { fetchProjects } from "./projectsActions";
-
 export const darkModeOn = () => {
     localStorage.setItem("darkMode", true);
     return {
@@ -16,5 +14,4 @@ export const darkModeOff = () => {
     }
 }
 
-// export { fetchProjects };
 

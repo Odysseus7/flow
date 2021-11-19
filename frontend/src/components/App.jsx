@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { GlobalStyles } from "./theme/GlobalStyles";
-// import { lightTheme, darkTheme } from "./theme/Themes"
 import ProjectList from "./projects/ProjectList";
 import { darkModeOn } from "../actions";
 import { darkModeOff } from "../actions";
-// import { ThemeProvider } from "styled-components";
 import ThemeButton from './theme/ThemeButton';
 import "../scss/style.scss";
 import Home from './home/Home';
+import Project from './project/Project';
 
 class App extends Component {
     render() {
@@ -22,7 +20,8 @@ class App extends Component {
                 <ThemeButton onClick={ darkMode ? this.props.darkModeOff : this.props.darkModeOn } darkMode={this.props.darkMode} />
                 <BrowserRouter>
                     <Route path="/" exact component={Home} />
-                    <Route path="/projects" component={ProjectList} />
+                    <Route path="/projects" exact component={ProjectList} />
+                    <Route path="/projects/:id" component={Project} />
                 </BrowserRouter>
             </div>
         );
