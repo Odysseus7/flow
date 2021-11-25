@@ -4,12 +4,12 @@ import Intro from './Intro';
 
 const Home = () => {
     return (
-        <div className="main">
+        <section className="main">
             <Intro />
-            <div className="cards__container">
+            <main className="cards__container">
                 <Cards />
-            </div>
-        </div>
+            </main>
+        </section>
     );
 };
 

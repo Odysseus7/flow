@@ -7,7 +7,6 @@ import { darkModeOff } from "../actions";
 import ThemeButton from './theme/ThemeButton';
 import "../scss/style.scss";
 import Home from './home/Home';
-import Project from './project/Project';
 
 class App extends Component {
     render() {
@@ -21,7 +20,6 @@ class App extends Component {
                 <BrowserRouter>
                     <Route path="/" exact component={Home} />
                     <Route path="/projects" exact component={ProjectList} />
-                    <Route path="/projects/:id" component={Project} />
                 </BrowserRouter>
             </div>
         );
