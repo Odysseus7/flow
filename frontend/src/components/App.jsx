@@ -9,14 +9,26 @@ import "../scss/style.scss";
 import Home from './home/Home';
 
 class App extends Component {
-    render() {
-        const darkMode = JSON.parse(window.localStorage.getItem("darkMode"));
+    
+
+    setDarkMode() {
+        this.darkMode = JSON.parse(window.localStorage.getItem("darkMode"));
         var body = document.querySelector('body');
-        body.setAttribute("data-theme", `${darkMode ? "dark" : "light"}`);
+        body.setAttribute("data-theme", `${this.darkMode ? "dark" : "light"}`);
+    }
+    
+
+    render() {
+        this.setDarkMode();
+        const logo = <a href="/"><img src="../images/logo.svg" class="logo" alt="Logo" /></a>;
 
         return (
-            <div class="App">
-                <ThemeButton onClick={ darkMode ? this.props.darkModeOff : this.props.darkModeOn } darkMode={this.props.darkMode} />
+            <div class="app">
+                <header className="app__header">
+                    {window.location.pathname === '/' ? "" : logo}
+                    <ThemeButton onClick={ this.darkMode ? this.props.darkModeOff : this.props.darkModeOn } darkMode={this.props.darkMode} />
+                </header>
+                
                 <BrowserRouter>
                     <Route path="/" exact component={Home} />
                     <Route path="/projects" exact component={ProjectList} />
