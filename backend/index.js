@@ -4,6 +4,7 @@ const path = require('path');
 
 const projectsRouter = require('./routes/projects');
 const coursesRouter = require('./routes/courses');
+const booksRouter = require('./routes/books');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use('/api/v1/projects', projectsRouter);
 app.use('/api/v1/courses', coursesRouter);
+app.use('/api/v1/books', booksRouter);
 
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 

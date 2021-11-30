@@ -7,6 +7,7 @@ const CourseCard = ({title, description, author, URL}) => {
         <article className="courses__card">
             <section className="courses__card__text">
                 <h1 className="courses__card__title">{title}</h1>
+                <p className="courses__card__author">by {author}</p>
                 <p className="courses__card__description">{description}</p>
             </section>
             <a href={URL} target="_blank" rel="noreferrer">

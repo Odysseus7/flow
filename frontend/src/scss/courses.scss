@@ -25,10 +25,20 @@
         }
 
         &__title {
-            margin: 0 0 2rem 0;
+            margin: 0;
             font-size: 1.5rem;
             color: var(--text-color-primary-colored);
         }
+
+        &__author {
+            font-size: .8rem;
+            // padding: 0 1rem;
+            padding: 0;
+            margin: 0;
+        }
+        
+
+       
 
         &__text {
             width: 60%;
