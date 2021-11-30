@@ -1,5 +1,6 @@
 .courses {
     &__container {
+        padding: 2rem 0;
         width: 60%;
         display: flex;
         flex-direction: column;
@@ -8,6 +9,7 @@
     }
 
     &__card {
+        width: 100%;
         margin-top: 3rem;
         padding: 3rem;
         background-color: var(--card-background-color);
@@ -15,6 +17,7 @@
         font-size: .9rem;
         display: flex;
         align-items: center;
+        justify-content: space-around;
         transition: all 1.5s;
 
         &:hover {
@@ -32,7 +35,7 @@
         }
 
         &__link {
-            margin-left: 10rem;
+            // margin-left: 8rem;
             text-transform: uppercase;
             padding: 1rem 2rem;
             border: 1px solid var(--text-color-secondary);
@@ -47,4 +50,61 @@
     }
 }
 
-@media only screen and (max-width: 300px) { }
+@media only screen and (max-width: 1050px) { 
+    .courses {
+        &__card {
+            flex-direction: column;
+            align-items: stretch;
+
+            &__link {
+                margin-top: 1rem;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) { 
+
+    .courses {
+        &__card {
+            &__text {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) { 
+    .app__header{
+        .logo {
+            margin: 2rem 0 0 2.5rem;
+        }
+    }
+    
+
+    .courses {
+        &__container {
+            width: 80%;
+        }
+
+        &__card {
+            &:first-child {
+                margin-top: 2rem;
+            }
+            
+            padding: 2rem 1.5rem;
+            &__text {
+                font-size: 1rem;
+            }
+
+            &__title {
+                font-size: 1.3rem;
+            }
+
+            &__link {
+                padding: .7rem 1rem;
+            }
+        }
+    }
+}

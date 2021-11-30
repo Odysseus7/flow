@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 const CourseCard = ({title, description, author, URL}) => {
     return (
@@ -11,7 +11,7 @@ const CourseCard = ({title, description, author, URL}) => {
             </section>
             <a href={URL} target="_blank" rel="noreferrer">
                 <article className="courses__card__link">
-                    more info &nbsp; <FontAwesomeIcon icon={faArrowRight} className="courses__card__icon linkicon" />
+                    more info &nbsp; <FontAwesomeIcon icon={faLink} className="courses__card__icon linkicon" />
                 </article>
             </a>
         </article>
