@@ -6,21 +6,14 @@ const Project = mongoose.model("projects");
 
 
 router.get('/', async (req, res, next) => {
-    const projects = await Project.find();
+    const projects = await Project.find({status:"active"});
     res.setHeader("Content-Type", "application/json");
     res.json(projects);
 });
 
-router.get('/:id', async (req, res, next) => {
-    const id = req.params.id;
-    const project = await Project.findById(id);
-    res.setHeader("Content-Type", "application/json");
-    res.json(project);
-});
-
 router.post('/', async (req, res, next) => {
-    const {name, description, img, githubURL, status} = req.body;
-    const project = new Project({name, description, img, githubURL, status});
+    const {name, description, images, URL, githubURL, status} = req.body;
+    const project = new Project({name, description, images, URL, githubURL, status});
     project.save((err, project) => {
         if(err) console.log(err);
         res.setHeader("Content-Type", "application/json");

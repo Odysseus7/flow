@@ -7,11 +7,12 @@ const projectSchema = new Schema({
     _id: Number,
     name: String,
     description: String,
-    img: Array,
+    images: Array,
+    URL: String,
     githubURL: String,
     status: String
 });
 
-projectSchema.plugin(AutoIncrement, {inc_field: "_id"})
+projectSchema.plugin(AutoIncrement, {id: 'projects_id_counter', inc_field: "_id"})
 
 mongoose.model('projects', projectSchema); // load into mongoose

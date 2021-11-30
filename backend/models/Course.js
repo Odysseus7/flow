@@ -7,10 +7,10 @@ const courseSchema = new Schema({
     _id: Number,
     name: String,
     author: String,
-    url: String,
+    URL: String,
     status: String
 });
 
-courseSchema.plugin(AutoIncrement, {inc_field: "_id"})
+courseSchema.plugin(AutoIncrement, {id: 'courses_id_counter', inc_field: "_id"})
 
 mongoose.model('courses', courseSchema); // load into mongoose
