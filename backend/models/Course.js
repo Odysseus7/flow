@@ -6,6 +6,7 @@ const { Schema } = mongoose;
 const courseSchema = new Schema({
     _id: Number,
     name: String,
+    description: String,
     author: String,
     URL: String,
     status: String
