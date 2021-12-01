@@ -36,15 +36,14 @@
         }
 
         &__description {
-            color: var(--text-color-secondary);
             font-size: .8rem;
         }
 
         &__icon {
             color: var(--text-color-primary-colored);
             transition: all 1.2s;
+            
             &:hover {
-                // background-color: var(--card-background-color-hover);
                 transform: translateY(-5px);
             }
         }

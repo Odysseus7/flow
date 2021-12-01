@@ -8,6 +8,7 @@ import { darkModeOff } from "../actions";
 import ThemeButton from './theme/ThemeButton';
 import "../scss/style.scss";
 import Home from './home/Home';
+import BookList from './books/BookList';
 
 class App extends Component {
     setDarkMode() {
@@ -32,6 +33,7 @@ class App extends Component {
                     <Route path="/" exact component={Home} />
                     <Route path="/projects" exact component={ProjectList} />
                     <Route path="/courses" exact component={CourseList} />
+                    <Route path="/books" exact component={BookList} />
                 </BrowserRouter>
             </div>
         );

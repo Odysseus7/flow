@@ -32,11 +32,12 @@ body {
     padding: 0;
     background-color: var(--background-color);
     transition: all 1.5s;
-    
+    color: var(--text-color-secondary);
 }
 
 @import 'projects.scss';
 @import 'courses.scss';
+@import 'books.scss';
 
 .app {
     min-height: 100vh;
@@ -80,7 +81,6 @@ body {
 
     &__subtext {
         text-transform: uppercase;
-        color: var(--text-color-secondary);
         display: inline-block;
         font-weight: 300;
         font-size: 1rem;
@@ -146,10 +146,6 @@ body {
                 top: 150%;
                 z-index: 1;
             }
-        }
-
-        &__description {
-            color: var(--text-color-secondary);
         }
         
     }
