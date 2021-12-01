@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
+
 
 const BookCard = ({name, description, author, image, URL}) => {
     return (
@@ -11,11 +14,11 @@ const BookCard = ({name, description, author, image, URL}) => {
             <section className="books__card__image">
                 <img src={image} alt={`cover of${name}`} />
             </section>
-            {/* <a href={URL} target="_blank" rel="noreferrer">
+            <a href={URL} target="_blank" rel="noreferrer">
                 <article className="books__card__link">
-                    more info &nbsp; <FontAwesomeIcon icon={faLink} className="books__card__icon linkicon" />
+                    &nbsp; <FontAwesomeIcon icon={faLink} className="books__card__icon linkicon" />
                 </article>
-            </a> */}
+            </a>
         </article>
     );
 };
