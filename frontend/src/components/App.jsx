@@ -12,6 +12,7 @@ import BookList from "./books/BookList";
 import About from "./about/About";
 import Setup from "./setup/Setup";
 import Contact from "./contact/Contact";
+import Login from "../admin/Login";
 
 class App extends Component {
 	setDarkMode() {
@@ -48,6 +49,7 @@ class App extends Component {
 					<Route path="/books" exact component={BookList} />
 					<Route path="/setup" exact component={Setup} />
 					<Route path="/contact" exact component={Contact} />
+					<Route path="/admin/login" exact component={Login} />
 				</BrowserRouter>
 			</div>
 		);

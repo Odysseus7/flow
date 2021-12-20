@@ -47,6 +47,7 @@ function Contact(props) {
 							label="Name"
 							name="sender_name"
 							placeholder="Name"
+							type="text"
 							className="contact__input"
 							required
 						/>
