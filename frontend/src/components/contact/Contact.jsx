@@ -1,6 +1,5 @@
 import React from "react";
 import emailjs from "emailjs-com";
-import { Form, Input, TextArea, Button } from "semantic-ui-react";
 import Swal from "sweetalert2";
 
 function Contact(props) {
@@ -29,41 +28,45 @@ function Contact(props) {
 	};
 
 	return (
-		<div className="contact__container">
-			<Form onSubmit={handleOnSubmit}>
-				<Form.Field
-					id="form-input-control-email"
-					control={Input}
-					label="Email"
-					name="sender_email"
-					placeholder="Email…"
-					required
-					icon="mail"
-					iconPosition="left"
-				/>
-				<Form.Field
-					id="form-input-control-last-name"
-					control={Input}
-					label="Name"
-					name="sender_name"
-					placeholder="Name…"
-					required
-					icon="user circle"
-					iconPosition="left"
-				/>
-				<Form.Field
-					id="form-textarea-control-opinion"
-					control={TextArea}
-					label="Message"
-					name="sender_message"
-					placeholder="Message…"
-					required
-				/>
-				<Button type="submit" color="green">
-					Submit
-				</Button>
-			</Form>
-		</div>
+		<section className="main main__contact">
+			<main className="contact__form__container">
+				<h1 className="primary-heading">Send me a message!</h1>
+				<form onSubmit={handleOnSubmit} className="contact__form">
+					<fieldset className="contact__input__container">
+						<input
+							id="form-input-control-email"
+							label="Email"
+							name="sender_email"
+							placeholder="Email"
+							type="email"
+							className="contact__input"
+							required
+						/>
+						<input
+							id="form-input-control-last-name"
+							label="Name"
+							name="sender_name"
+							placeholder="Name"
+							className="contact__input"
+							required
+						/>
+					</fieldset>
+
+					<textarea
+						id="form-textarea-control-opinion"
+						label="Message"
+						name="sender_message"
+						placeholder="Message…"
+						className="contact__message"
+						rows="7"
+						required
+					/>
+					<button type="submit" className="contact__btn">
+						Submit
+					</button>
+				</form>
+			</main>
+		</section>
 	);
 }
 
