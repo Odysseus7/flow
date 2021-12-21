@@ -1,33 +1,37 @@
-const express = require('express');
-const cors = require('cors')
-const path = require('path');
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
 
-const projectsRouter = require('./routes/projects');
-const coursesRouter = require('./routes/courses');
-const booksRouter = require('./routes/books');
+const projectsRouter = require("./routes/projects");
+const coursesRouter = require("./routes/courses");
+const booksRouter = require("./routes/books");
+const loginRouter = require("./routes/auth/login");
+const registerRouter = require("./routes/auth/register");
 
+
+require("dotenv").config();
+require("./config/database").connect();
+
+const { API_PORT } = process.env;
+const port = process.env.PORT || API_PORT;
 const app = express();
-const mongoose = require('mongoose');
-const keys = require ("./config/keys");
-const PORT = process.env.PORT || 5000;
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
-app.use('/api/v1/projects', projectsRouter);
-app.use('/api/v1/courses', coursesRouter);
-app.use('/api/v1/books', booksRouter);
+app.use("/api/v1/projects", projectsRouter);
+app.use("/api/v1/courses", coursesRouter);
+app.use("/api/v1/books", booksRouter);
+app.use("/api/v1/login", loginRouter);
+app.use("/api/v1/register", registerRouter);
 
-mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
-
-
-app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`)
-})
+app.listen(port, () => {
+	console.log(`Example app listening at http://localhost:${port}`);
+});
 
 module.exports = app;
