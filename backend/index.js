@@ -7,7 +7,7 @@ const coursesRouter = require("./routes/courses");
 const booksRouter = require("./routes/books");
 const loginRouter = require("./routes/auth/login");
 const registerRouter = require("./routes/auth/register");
-
+const adminPanelRouter = require("./routes/auth/adminpanel");
 
 require("dotenv").config();
 require("./config/database").connect();
@@ -27,8 +27,9 @@ app.use(cors());
 app.use("/api/v1/projects", projectsRouter);
 app.use("/api/v1/courses", coursesRouter);
 app.use("/api/v1/books", booksRouter);
-app.use("/api/v1/login", loginRouter);
-app.use("/api/v1/register", registerRouter);
+app.use("/api/v1/admin/login", loginRouter);
+app.use("/api/v1/admin/register", registerRouter);
+app.use("/api/v1/admin", adminPanelRouter);
 
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`);
