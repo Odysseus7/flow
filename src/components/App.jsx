@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import { connect } from "react-redux";
+import { BrowserRouter, Route, useLocation } from "react-router-dom";
+
 import ProjectList from "./projects/ProjectList";
 import CourseList from "./courses/CourseList";
-import { darkModeOn } from "../actions";
-import { darkModeOff } from "../actions";
-import ThemeButton from "./theme/ThemeButton";
+
 import "../scss/style.scss";
 import Home from "./home/Home";
 import BookList from "./books/BookList";
@@ -13,56 +11,28 @@ import About from "./about/About";
 import Setup from "./setup/Setup";
 import Contact from "./contact/Contact";
 import Login from "../admin/Login";
-import Welcome from "./Welcome";
+import ProtectedRoute from "./admin/ProtectedRoute";
 
-class App extends Component {
-	setDarkMode() {
-		this.darkMode = JSON.parse(window.localStorage.getItem("darkMode"));
-		var body = document.querySelector("body");
-		body.setAttribute("data-theme", `${this.darkMode ? "dark" : "light"}`);
-	}
+import Header from "./shared/Header";
+import Welcome from "./admin/Welcome";
 
-	render() {
-		this.setDarkMode();
-		const logo = (
-			<a href="/">
-				<img src="../images/logo.svg" className="logo" alt="Logo" />
-			</a>
-		);
+const App = () => {
+	const location = useLocation();
+	return (
+		<div className="app">
+			<Header location={location.pathname} />
 
-		return (
-			<div className="app">
-				<header className="app__header">
-					{window.location.pathname === "/" ? "" : logo}
-					<ThemeButton
-						onClick={
-							this.darkMode ? this.props.darkModeOff : this.props.darkModeOn
-						}
-						darkMode={this.props.darkMode}
-					/>
-				</header>
-
-				<BrowserRouter>
-					<Route path="/" exact component={Home} />
-					<Route path="/about" exact component={About} />
-					<Route path="/projects" exact component={ProjectList} />
-					<Route path="/courses" exact component={CourseList} />
-					<Route path="/books" exact component={BookList} />
-					<Route path="/setup" exact component={Setup} />
-					<Route path="/contact" exact component={Contact} />
-					<Route path="/admin/login" exact component={Login} />
-					<Route path="/admin/welcome" exact component={Welcome} />
-				</BrowserRouter>
-			</div>
-		);
-	}
-}
-
-const mapStateToProps = (state) => {
-	return {
-		...state,
-		darkMode: state.darkMode,
-	};
+			<Route path="/" exact component={Home} />
+			<Route path="/about" exact component={About} />
+			<Route path="/projects" exact component={ProjectList} />
+			<Route path="/courses" exact component={CourseList} />
+			<Route path="/books" exact component={BookList} />
+			<Route path="/setup" exact component={Setup} />
+			<Route path="/contact" exact component={Contact} />
+			<Route path="/admin/login" exact component={Login} />
+			<ProtectedRoute exact path="/admin/dashboard" component={Welcome} />
+		</div>
+	);
 };
 
-export default connect(mapStateToProps, { darkModeOn, darkModeOff })(App);
+export default App;
