@@ -14,7 +14,7 @@ import Login from "../admin/Login";
 import ProtectedRoute from "./admin/ProtectedRoute";
 
 import Header from "./shared/Header";
-import Welcome from "./admin/Welcome";
+import Welcome from "./admin/dashboard/Welcome";
 
 const App = () => {
 	const location = useLocation();
