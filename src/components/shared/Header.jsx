@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { compose } from "redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { darkModeOn } from "../../actions";
 import { darkModeOff } from "../../actions";
 import ThemeButton from "../theme/ThemeButton";
 import LogoutBtn from "../admin/LogoutBtn";
+import { isAuthenticated } from "../admin/ProtectedRoute";
 
 class Header extends Component {
 	static propTypes = {
@@ -28,16 +28,16 @@ class Header extends Component {
 				<img src="../images/logo.svg" className="logo" alt="Logo" />
 			</a>
 		);
-		const { match, location, history } = this.props;
+		const { location } = this.props;
 
-		const isAuthenticated = JSON.parse(localStorage.getItem("isAuthenticated"));
-		const pathname = this.props.location.pathname;
+		const isLoggedIn = isAuthenticated(localStorage.getItem("token"));
+		const pathname = location.pathname;
 		const adminRoute = pathname.includes("admin");
 
 		return (
 			<header className="app__header">
 				{pathname === "/" ? "" : logo}
-				{isAuthenticated && adminRoute ? <LogoutBtn /> : ""}
+				{isLoggedIn && adminRoute ? <LogoutBtn /> : ""}
 				<ThemeButton
 					onClick={
 						this.darkMode ? this.props.darkModeOff : this.props.darkModeOn

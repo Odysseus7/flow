@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, useLocation } from "react-router-dom";
+import React from "react";
+import { Route, useLocation } from "react-router-dom";
 
 import ProjectList from "./projects/ProjectList";
 import CourseList from "./courses/CourseList";

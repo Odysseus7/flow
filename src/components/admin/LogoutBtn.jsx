@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -6,9 +6,7 @@ const LogoutBtn = () => {
 	const history = useHistory();
 	const handleLogout = () => {
 		localStorage.removeItem("token");
-		localStorage.removeItem("username");
-		localStorage.removeItem("id");
-		localStorage.setItem("isAuthenticated", false);
+		localStorage.removeItem("isAuthenticated", false);
 		history.push("/admin/login");
 	};
 	return (
