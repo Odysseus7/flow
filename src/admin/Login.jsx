@@ -2,24 +2,14 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { admin } from "../apis/base";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {
+	invalidCredentialsNotification,
+	serverErrorNotification,
+} from "../notifications/toasters";
 
 class Login extends Component {
 	options = {
 		headers: { "Content-Type": "x-www-form-urlencoded" },
-	};
-
-	invalidCredentialsNotification = () => {
-		toast.error("Invalid credentials", {
-			theme: "colored",
-		});
-	};
-
-	serverErrorNotification = () => {
-		toast.error("An unexpected error occured", {
-			theme: "colored",
-		});
 	};
 
 	handleSubmit = async (event) => {
@@ -40,10 +30,10 @@ class Login extends Component {
 			})
 			.catch((error) => {
 				if (error["response"] && error["response"].status === 400) {
-					this.invalidCredentialsNotification();
+					invalidCredentialsNotification();
 					return;
 				}
-				this.serverErrorNotification();
+				serverErrorNotification();
 			});
 	};
 	render() {
