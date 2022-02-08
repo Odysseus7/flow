@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { admin } from "../apis/base";
@@ -38,6 +39,7 @@ class Login extends Component {
 
 		this.login(data);
 	};
+
 	render() {
 		return (
 			<section className="main main__login">

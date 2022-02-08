@@ -8,6 +8,7 @@ const Cards = () => {
 			<Card
 				key={Math.round(Math.random() * 100)}
 				title={card.title}
+				path={card.path}
 				description={card.description}
 			/>
 		));

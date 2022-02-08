@@ -1,7 +1,18 @@
 .btn-primary {
 	position: absolute;
-	top: 5rem;
-	left: 6rem;
+	top: 1.2rem;
+	right: 6rem;
+	background-color: transparent;
+	border: none;
+	border-bottom: 2px solid var(--text-color-secondary);
+	padding: 0rem 0 0.5rem 0;
+	color: var(--text-color-secondary);
+	cursor: pointer;
+	transition: all 1.5s;
+	&:hover {
+		color: var(--text-color-primary--dark);
+		border-bottom: 2px solid var(--text-color-primary--dark);
+	}
 }
 
 .intro {
@@ -12,4 +23,11 @@
 
 .admin__cards__container {
 	margin-top: 2rem;
+}
+
+@media only screen and(max-width: 750px) {
+	.btn-primary {
+		top: 4rem;
+		right: 1rem;
+	}
 }
