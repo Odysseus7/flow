@@ -12,21 +12,13 @@ class Login extends Component {
 		headers: { "Content-Type": "x-www-form-urlencoded" },
 	};
 
-	handleSubmit = async (event) => {
-		event.preventDefault();
-		const data = {
-			username: event.target.username.value,
-			password: event.target.password.value,
-		};
-
-		const response = await admin
+	login = async (data) => {
+		await admin
 			.post("/login", data)
-			.then(() => {
-				if (response.status === 200) {
-					localStorage.setItem("token", response.data.token);
-					localStorage.setItem("isAuthenticated", true);
-					this.props.history.push("/admin/dashboard");
-				}
+			.then((response) => {
+				localStorage.setItem("token", response.data.token);
+				localStorage.setItem("isAuthenticated", true);
+				this.props.history.push("/admin/dashboard");
 			})
 			.catch((error) => {
 				if (error["response"] && error["response"].status === 400) {
@@ -35,6 +27,16 @@ class Login extends Component {
 				}
 				serverErrorNotification();
 			});
+	};
+
+	handleSubmit = async (event) => {
+		event.preventDefault();
+		const data = {
+			username: event.target.username.value,
+			password: event.target.password.value,
+		};
+
+		this.login(data);
 	};
 	render() {
 		return (
