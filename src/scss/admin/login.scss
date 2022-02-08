@@ -27,14 +27,7 @@
 		border-radius: 3px;
 		background-color: var(--card-background-color);
 		margin: 0.5rem 0;
-
-		&::placeholder {
-			color: var(--text-color-secondary);
-		}
-
-		&:focus {
-			color: var(--text-color-secondary);
-		}
+		color: var(--text-color-secondary);
 	}
 
 	&__btn {
