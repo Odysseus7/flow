@@ -12,6 +12,7 @@ import Login from "../admin/Login";
 import ProtectedRoute from "./admin/ProtectedRoute";
 import Header from "./shared/Header";
 import Welcome from "./admin/dashboard/Welcome";
+import CoursesPage from "./admin/courses/CoursesPage";
 import { ToastContainer, Slide } from "react-toastify";
 
 const App = () => {
@@ -28,7 +29,9 @@ const App = () => {
 			<Route path="/setup" exact component={Setup} />
 			<Route path="/contact" exact component={Contact} />
 			<Route path="/admin/login" exact component={Login} />
+
 			<ProtectedRoute exact path="/admin/dashboard" component={Welcome} />
+			<ProtectedRoute exact path="/admin/courses" component={CoursesPage} />
 			<ToastContainer
 				position="top-center"
 				autoClose={3000}

@@ -2,16 +2,16 @@ export const cardData = [
 	{
 		title: "projects",
 		path: "admin/projects",
-		description: "Add a new project",
+		description: "Add or delete a project",
 	},
 	{
 		title: "courses",
 		path: "admin/courses",
-		description: "Add a new course",
+		description: "Add or delete a course",
 	},
 	{
 		title: "books",
 		path: "admin/books",
-		description: "Add a new book",
+		description: "Add or delete a book",
 	},
 ];
