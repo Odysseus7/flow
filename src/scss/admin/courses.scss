@@ -54,6 +54,22 @@
 	}
 }
 
+.inactive {
+	h2 {
+		color: var(--text-color-primary--dark);
+	}
+
+	button {
+		background-color: inherit;
+		color: var(--text-color-primary--dark);
+		transition: all 1s;
+		&:hover {
+			background-color: inherit;
+			color: var(--text-color-primary);
+		}
+	}
+}
+
 .btn {
 	background: none;
 	border: 0;

@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { fetchCourses } from "../../../actions/coursesActions";
+import { fetchAllCourses } from "../../../actions/coursesActions";
 import { connect } from "react-redux";
 import CourseListItem from "./CourseListItem";
 
 class EditCourse extends Component {
 	componentDidMount() {
-		this.props.fetchCourses();
+		this.props.fetchAllCourses();
 	}
 
-	renderCourses() {
-		return this.props.courses.map((course) => (
+	renderCourses(courses, isActive) {
+		return courses.map((course) => (
 			<CourseListItem
 				key={course._id}
 				id={course._id}
@@ -18,8 +18,25 @@ class EditCourse extends Component {
 				author={course.author}
 				URL={course.URL}
 				status={course.status}
+				isActive={isActive}
 			/>
 		));
+	}
+
+	getActiveCourses() {
+		const activeCourses = this.props.courses.filter(
+			(course) => course.status === "active"
+		);
+
+		return this.renderCourses(activeCourses, true);
+	}
+
+	getInActiveCourses() {
+		const inActiveCourses = this.props.courses.filter(
+			(course) => course.status === "inactive"
+		);
+		console.log(inActiveCourses);
+		return this.renderCourses(inActiveCourses, false);
 	}
 
 	render() {
@@ -27,7 +44,8 @@ class EditCourse extends Component {
 			<section className="admin__courses__edit">
 				<h1>Edit courses</h1>
 				<article className="admin__courses__list">
-					{this.renderCourses()}
+					{this.getActiveCourses()}
+					{this.getInActiveCourses()}
 				</article>
 			</section>
 		);
@@ -41,4 +59,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { fetchCourses })(EditCourse);
+export default connect(mapStateToProps, { fetchAllCourses })(EditCourse);

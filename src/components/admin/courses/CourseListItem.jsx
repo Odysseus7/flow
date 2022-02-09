@@ -55,6 +55,10 @@ class CourseListItem extends Component {
 		this.setState({ status: "inactive" }, () => this.editCourse(this.state));
 	};
 
+	onActiveClick = () => {
+		this.setState({ status: "active" }, () => this.editCourse(this.state));
+	};
+
 	renderForm = () => {
 		return (
 			<form
@@ -112,22 +116,48 @@ class CourseListItem extends Component {
 		);
 	};
 
-	render() {
-		return (
-			<article className="admin__courselist__item">
-				<h2 className="admin__heading-secondary">{this.state.updatedTitle}</h2>
+	renderButtons = () => {
+		if (this.props.isActive) {
+			return (
 				<article className="admin__courses__button__container">
 					<ModalBtn buttonLabel="Edit">{this.renderForm()}</ModalBtn>
-					<div class="wrapper-0-2-1">
+					<div className="wrapper-0-2-1">
 						<button
 							type="button"
-							class="modalButton-0-2-2 admin__btn"
+							className="modalButton-0-2-2 admin__btn"
 							onClick={this.onDeleteClick}
 						>
 							Delete
 						</button>
 					</div>
 				</article>
+			);
+		} else {
+			return (
+				<article className="admin__courses__button__container">
+					<div className="wrapper-0-2-1">
+						<button
+							type="button"
+							className="modalButton-0-2-2 admin__btn"
+							onClick={this.onActiveClick}
+						>
+							Undo delete
+						</button>
+					</div>
+				</article>
+			);
+		}
+	};
+
+	render() {
+		return (
+			<article
+				className={`admin__courselist__item ${
+					!this.props.isActive ? "inactive" : ""
+				}`}
+			>
+				<h2 className="admin__heading-secondary">{this.state.updatedTitle}</h2>
+				{this.renderButtons()}
 			</article>
 		);
 	}
