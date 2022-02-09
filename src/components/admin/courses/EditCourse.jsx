@@ -3,7 +3,7 @@ import { fetchCourses } from "../../../actions/coursesActions";
 import { connect } from "react-redux";
 import CourseListItem from "./CourseListItem";
 
-class DeleteCourse extends Component {
+class EditCourse extends Component {
 	componentDidMount() {
 		this.props.fetchCourses();
 	}
@@ -17,14 +17,18 @@ class DeleteCourse extends Component {
 				description={course.description}
 				author={course.author}
 				URL={course.URL}
+				status={course.status}
 			/>
 		));
 	}
 
 	render() {
 		return (
-			<section className="admin__courses__delete">
-				{this.renderCourses()}
+			<section className="admin__courses__edit">
+				<h1>Edit courses</h1>
+				<article className="admin__courses__list">
+					{this.renderCourses()}
+				</article>
 			</section>
 		);
 	}
@@ -37,4 +41,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { fetchCourses })(DeleteCourse);
+export default connect(mapStateToProps, { fetchCourses })(EditCourse);

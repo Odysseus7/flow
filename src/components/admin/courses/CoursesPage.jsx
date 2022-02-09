@@ -1,11 +1,11 @@
 import React from "react";
 import AddCourse from "./AddCourse";
-import DeleteCourse from "./DeleteCourse";
+import EditCourse from "./EditCourse";
 
 const CoursesPage = () => {
 	return (
 		<main className="admin__courses__container">
-			<DeleteCourse />
+			<EditCourse />
 			<AddCourse />
 		</main>
 	);

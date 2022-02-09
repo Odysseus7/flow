@@ -1,27 +1,28 @@
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-  wrapper: {
-    marginBottom: "0.8rem",
+	wrapper: {
+		marginBottom: "0.8rem",
 
-    "& + &": {
-      marginBottom: 0
-    }
-  },
+		"& + &": {
+			marginBottom: 0,
+		},
+	},
 
-  modalButton: {
-    padding: ["0.7rem", "1.8rem"],
-    backgroundColor: "#34363a",
-    border: 0,
-    borderRadius: "0.3rem",
-    fontSize: "1rem",
-    color: "#fff",
-    cursor: "pointer",
+	modalButton: {
+		padding: ["0.7rem", "1.8rem"],
+		backgroundColor: "#34363a",
+		border: 0,
+		borderRadius: "0.3rem",
+		fontSize: "1rem",
+		color: "#fff",
+		cursor: "pointer",
+		textTransform: "uppercase",
 
-    "&:hover": {
-      backgroundColor: "#424f63"
-    }
-  }
+		"&:hover": {
+			backgroundColor: "#424f63",
+		},
+	},
 });
 
 export default useStyles;
