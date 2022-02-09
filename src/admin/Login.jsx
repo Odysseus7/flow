@@ -3,10 +3,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { admin } from "../apis/base";
-import {
-	invalidCredentialsNotification,
-	serverErrorNotification,
-} from "../notifications/toasters";
+import { errorNotification } from "../notifications/toasters";
 
 class Login extends Component {
 	options = {
@@ -23,10 +20,10 @@ class Login extends Component {
 			})
 			.catch((error) => {
 				if (error["response"] && error["response"].status === 400) {
-					invalidCredentialsNotification();
+					errorNotification("Invalid credentials");
 					return;
 				}
-				serverErrorNotification();
+				errorNotification("An unexpected error occured");
 			});
 	};
 

@@ -13,7 +13,7 @@ class DeleteCourse extends Component {
 			<CourseListItem
 				key={course._id}
 				id={course._id}
-				title={course.name}
+				title={course.title}
 				description={course.description}
 				author={course.author}
 				URL={course.URL}

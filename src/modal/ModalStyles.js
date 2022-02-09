@@ -45,7 +45,8 @@ const useStyles = createUseStyles({
 	// Modal itself
 	modal: {
 		width: "100%",
-		backgroundColor: "#fff",
+		height: "30rem",
+		backgroundColor: "#767676",
 		boxShadow: [0, 0, "0.625rem", "rgba(0, 0, 0, 0.2)"],
 		position: "relative",
 		padding: "1rem",

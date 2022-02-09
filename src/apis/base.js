@@ -4,7 +4,7 @@ export const admin = axios.create({
 	baseURL: `${process.env.REACT_APP_API_BASE}/admin`,
 });
 
-admin.defaults.headers.common["authorization"] = `Bearer ${localStorage.getItem(
+admin.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem(
 	"token"
 )}`;
 
