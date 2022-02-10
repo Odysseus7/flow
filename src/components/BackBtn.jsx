@@ -16,8 +16,6 @@ const BackBtn = () => {
 		url = "/";
 	}
 
-	console.log(pathname);
-
 	return (
 		<Link to={url}>
 			{pathname !== "/" && pathname !== "/admin/dashboard" ? (

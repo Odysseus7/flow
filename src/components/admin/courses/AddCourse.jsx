@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { admin } from "../../../apis/base";
+import {
+	errorNotification,
+	successNotification,
+} from "./../../../notifications/toasters";
 
 class AddCourse extends Component {
 	constructor(props) {
@@ -12,11 +17,27 @@ class AddCourse extends Component {
 		};
 	}
 
+	saveCourse = async (course) => {
+		await admin
+			.post(`/courses`, course)
+			.then((response) => {
+				successNotification("Course has successfully been added");
+
+				// this.setState({ updatedTitle: course.title });
+			})
+			.catch((error) => {
+				errorNotification("An unexpected error occured");
+			});
+	};
+
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 
-	handleOnSubmit = () => {};
+	handleOnSubmit = (event) => {
+		event.preventDefault();
+		this.saveCourse(this.state);
+	};
 
 	renderForm = () => {
 		return (
@@ -75,7 +96,7 @@ class AddCourse extends Component {
 	render() {
 		return (
 			<section className="admin__courses__add">
-				<h1 class="admin__courses__heading--primary">Add course</h1>
+				<h1 className="admin__courses__heading--primary">Add course</h1>
 				{this.renderForm()}
 			</section>
 		);

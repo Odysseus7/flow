@@ -5,7 +5,7 @@ const Setup = () => {
 	return (
 		<section className="main main__setup">
 			<main className="setup__container">
-				<img src={setupPicture} alt="Setup" class="setup__img" />
+				<img src={setupPicture} alt="Setup" className="setup__img" />
 				<article className="setup__description">
 					<article className="setup__desksetup">
 						<h1 className="setup__heading">Desk setup</h1>
