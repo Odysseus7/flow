@@ -4,6 +4,7 @@
 			display: flex;
 			align-items: center;
 			min-height: 55vh;
+			padding: 0 5rem;
 		}
 
 		&__edit {
@@ -51,6 +52,13 @@
 			justify-content: space-between;
 			padding: 0 2rem;
 		}
+	}
+
+	&__undo__btn {
+		background-color: transparent;
+		border: none;
+		text-transform: uppercase;
+		cursor: pointer;
 	}
 }
 
@@ -161,6 +169,7 @@
 		&__courses {
 			&__container {
 				flex-direction: column;
+				padding: 0;
 			}
 
 			&__edit {
@@ -174,6 +183,13 @@
 			&__add {
 				width: 100%;
 			}
+
+			&__button__container {
+				margin: 0;
+			}
+		}
+		&__courselist__item {
+			align-items: center;
 		}
 	}
 }

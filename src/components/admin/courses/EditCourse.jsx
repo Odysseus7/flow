@@ -35,7 +35,6 @@ class EditCourse extends Component {
 		const inActiveCourses = this.props.courses.filter(
 			(course) => course.status === "inactive"
 		);
-		console.log(inActiveCourses);
 		return this.renderCourses(inActiveCourses, false);
 	}
 

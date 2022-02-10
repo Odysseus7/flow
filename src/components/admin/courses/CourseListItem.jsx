@@ -18,6 +18,7 @@ class CourseListItem extends Component {
 			URL: props.URL,
 			status: props.status,
 			updatedTitle: props.title,
+			updatedStatus: props.isActive,
 		};
 	}
 
@@ -34,13 +35,31 @@ class CourseListItem extends Component {
 		await admin
 			.patch(`/courses/${this.props.id}`, course)
 			.then((response) => {
-				if (course.status === "inactive") {
-					successNotification("Course is successfully deleted");
-				} else {
-					successNotification("Changes are successfully saved");
-				}
+				successNotification("Changes are successfully saved");
 
-				this.setState({ updatedTitle: this.state.title });
+				this.setState({ updatedTitle: course.title });
+			})
+			.catch((error) => {
+				if (error["response"] && error["response"].status === 400) {
+					errorNotification("Course not found");
+					return;
+				}
+				errorNotification("An unexpected error occured");
+			});
+	};
+
+	changeStatus = async (status) => {
+		const updatedStatus = status === "active" ? true : false;
+
+		await admin
+			.patch(`/courses/${this.props.id}?status=${status}`, null)
+			.then((response) => {
+				if (status === "active") {
+					successNotification("Course has been restored");
+				} else {
+					successNotification("Course has been deleted");
+				}
+				this.setState({ updatedStatus });
 			})
 			.catch((error) => {
 				if (error["response"] && error["response"].status === 400) {
@@ -52,11 +71,15 @@ class CourseListItem extends Component {
 	};
 
 	onDeleteClick = () => {
-		this.setState({ status: "inactive" }, () => this.editCourse(this.state));
+		this.setState({ status: "inactive" }, () => {
+			this.changeStatus("inactive");
+		});
 	};
 
 	onActiveClick = () => {
-		this.setState({ status: "active" }, () => this.editCourse(this.state));
+		this.setState({ status: "active" }, () => {
+			this.changeStatus("active");
+		});
 	};
 
 	renderForm = () => {
@@ -117,7 +140,7 @@ class CourseListItem extends Component {
 	};
 
 	renderButtons = () => {
-		if (this.props.isActive) {
+		if (this.state.updatedStatus) {
 			return (
 				<article className="admin__courses__button__container">
 					<ModalBtn buttonLabel="Edit">{this.renderForm()}</ModalBtn>
@@ -135,15 +158,13 @@ class CourseListItem extends Component {
 		} else {
 			return (
 				<article className="admin__courses__button__container">
-					<div className="wrapper-0-2-1">
-						<button
-							type="button"
-							className="modalButton-0-2-2 admin__btn"
-							onClick={this.onActiveClick}
-						>
-							Undo delete
-						</button>
-					</div>
+					<button
+						type="button"
+						className="admin__undo__btn admin__btn"
+						onClick={this.onActiveClick}
+					>
+						Undo delete
+					</button>
 				</article>
 			);
 		}
@@ -153,7 +174,7 @@ class CourseListItem extends Component {
 		return (
 			<article
 				className={`admin__courselist__item ${
-					!this.props.isActive ? "inactive" : ""
+					!this.state.updatedStatus ? "inactive" : ""
 				}`}
 			>
 				<h2 className="admin__heading-secondary">{this.state.updatedTitle}</h2>
