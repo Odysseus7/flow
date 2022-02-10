@@ -14,13 +14,14 @@ import Header from "./shared/Header";
 import Welcome from "./admin/dashboard/Welcome";
 import CoursesPage from "./admin/courses/CoursesPage";
 import { ToastContainer, Slide } from "react-toastify";
+import BackBtn from "./BackBtn";
 
 const App = () => {
 	const location = useLocation();
 	return (
 		<div className="app">
 			<Header location={location.pathname} />
-
+			<BackBtn />
 			<Route path="/" exact component={Home} />
 			<Route path="/about" exact component={About} />
 			<Route path="/projects" exact component={ProjectList} />

@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { darkModeOn } from "../../actions";
 import { darkModeOff } from "../../actions";
 import ThemeButton from "../theme/ThemeButton";
-import LogoutBtn from "../admin/LogoutBtn";
+import HeaderBtn from "../admin/HeaderBtn";
 import { isAuthenticated } from "../admin/ProtectedRoute";
 
 class Header extends Component {
@@ -37,7 +37,12 @@ class Header extends Component {
 		return (
 			<header className="app__header">
 				{pathname === "/" ? "" : logo}
-				{isLoggedIn && adminRoute ? <LogoutBtn /> : ""}
+				{isLoggedIn && adminRoute ? (
+					<HeaderBtn text="Log out" isLogoutBtn={true} />
+				) : (
+					""
+				)}
+				{isLoggedIn && !adminRoute ? <HeaderBtn text="Admin" /> : ""}
 				<ThemeButton
 					onClick={
 						this.darkMode ? this.props.darkModeOff : this.props.darkModeOn

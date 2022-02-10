@@ -4,9 +4,11 @@ import EditCourse from "./EditCourse";
 
 const CoursesPage = () => {
 	return (
-		<main className="admin__courses__container">
-			<EditCourse />
-			<AddCourse />
+		<main>
+			<section className="admin__courses__container">
+				<EditCourse />
+				<AddCourse />
+			</section>
 		</main>
 	);
 };
