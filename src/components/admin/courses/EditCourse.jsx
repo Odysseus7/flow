@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-import { fetchAllCourses } from "../../../actions/coursesActions";
-import { connect } from "react-redux";
 import CourseListItem from "./CourseListItem";
 
 class EditCourse extends Component {
-	componentDidMount() {
-		this.props.fetchAllCourses();
-	}
-
 	renderCourses(courses, isActive) {
 		return courses.map((course) => (
 			<CourseListItem
@@ -21,6 +15,12 @@ class EditCourse extends Component {
 				isActive={isActive}
 			/>
 		));
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.courses !== prevProps.courses) {
+			this.getActiveCourses();
+		}
 	}
 
 	getActiveCourses() {
@@ -51,11 +51,4 @@ class EditCourse extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		...state,
-		courses: state.courses,
-	};
-};
-
-export default connect(mapStateToProps, { fetchAllCourses })(EditCourse);
+export default EditCourse;

@@ -27,9 +27,8 @@ class AddCourse extends Component {
 		await admin
 			.post(`/courses`, course)
 			.then((response) => {
+				this.props.updateCourseList(response.data);
 				successNotification("Course has successfully been added");
-
-				// this.setState({ updatedTitle: course.title });
 			})
 			.catch((error) => {
 				errorNotification("An unexpected error occured");
