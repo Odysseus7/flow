@@ -5,6 +5,12 @@ import {
 	successNotification,
 } from "./../../../notifications/toasters";
 
+// TO DO
+/**
+ * Update state upon saved course
+ * Add form validation
+ */
+
 class AddCourse extends Component {
 	constructor(props) {
 		super(props);

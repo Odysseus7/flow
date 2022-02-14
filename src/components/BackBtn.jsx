@@ -18,7 +18,9 @@ const BackBtn = () => {
 
 	return (
 		<Link to={url}>
-			{pathname !== "/" && pathname !== "/admin/dashboard" ? (
+			{pathname !== "/" &&
+			pathname !== "/admin/dashboard" &&
+			pathname !== "/admin/login" ? (
 				<div className="backBtn">
 					<FontAwesomeIcon icon={faLongArrowAltLeft} size="2x" />
 					&nbsp;Back
