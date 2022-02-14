@@ -3,18 +3,21 @@ import { admin } from "../../../apis/base";
 import {
 	errorNotification,
 	successNotification,
-} from "./../../../notifications/toasters";
+} from "../../../notifications/toasters";
 
-class AddCourse extends Component {
+class AddProject extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			title: "",
+			name: "",
 			description: "",
-			author: "",
 			URL: "",
+			githubURL: "",
+			status: "",
+			image: "",
 			validURL: "",
+			validgithubURL: "",
 		};
 	}
 
@@ -25,12 +28,12 @@ class AddCourse extends Component {
 		return regex.test(URL);
 	};
 
-	saveCourse = async (course) => {
+	saveProject = async (project) => {
 		await admin
-			.post(`/courses`, course)
+			.post(`/projects`, project)
 			.then((response) => {
-				this.props.updateCourseList(response.data);
-				successNotification("Course has successfully been added");
+				this.props.updateProjectsList(response.data);
+				successNotification("project has successfully been added");
 			})
 			.catch((error) => {
 				errorNotification("An unexpected error occured");
@@ -40,10 +43,11 @@ class AddCourse extends Component {
 	handleChange = (event) => {
 		const value = event.target.value;
 		const name = event.target.name;
-		if (name === "URL") {
-			const validURL = !value || this.urlPatternValidation(value);
+		if (name === "URL" || name === "githubURL") {
+			let key = `valid${name}`;
+			console.log(key);
 			this.setState({
-				validURL,
+				[key]: !value || this.urlPatternValidation(value),
 			});
 		}
 		this.setState({ [name]: value });
@@ -51,19 +55,19 @@ class AddCourse extends Component {
 
 	handleOnSubmit = (event) => {
 		event.preventDefault();
-		this.saveCourse(this.state);
+		this.saveProject(this.state);
 	};
 
 	renderForm = () => {
 		return (
 			<form onSubmit={this.handleOnSubmit} className="admin__course__form">
 				<input
-					label="title"
-					name="title"
-					placeholder="Title"
+					label="name"
+					name="name"
+					placeholder="Name"
 					type="text"
 					className="admin__add__input admin__title"
-					value={this.state.title}
+					value={this.state.name}
 					onChange={this.handleChange}
 					minLength="10"
 					required
@@ -83,18 +87,6 @@ class AddCourse extends Component {
 				/>
 
 				<input
-					label="author"
-					name="author"
-					placeholder="Author"
-					type="text"
-					className="admin__add__input"
-					minLength="10"
-					value={this.state.author}
-					onChange={this.handleChange}
-					required
-				/>
-
-				<input
 					label="url"
 					name="URL"
 					placeholder="URL"
@@ -108,8 +100,36 @@ class AddCourse extends Component {
 				{!this.state.validURL && this.state.validURL !== "" && (
 					<p className="urlValidationText">URL is invalid.</p>
 				)}
+
+				<input
+					label="githuburl"
+					name="githubURL"
+					placeholder="Github URL"
+					type="text"
+					className="admin__add__input"
+					value={this.state.githubURL}
+					minLength="3"
+					onChange={this.handleChange}
+					required
+				/>
+				{!this.state.validgithubURL && this.state.validgithubURL !== "" && (
+					<p className="urlValidationText">URL is invalid.</p>
+				)}
+
+				<input
+					label="image"
+					name="image"
+					placeholder="Image URL"
+					type="text"
+					className="admin__add__input"
+					value={this.state.image}
+					minLength="3"
+					onChange={this.handleChange}
+					required
+				/>
+
 				<button type="submit" className="btn draw">
-					Add course
+					Add project
 				</button>
 			</form>
 		);
@@ -118,11 +138,11 @@ class AddCourse extends Component {
 	render() {
 		return (
 			<section className="admin__courses__add">
-				<h1 className="admin__courses__heading--primary">Add course</h1>
+				<h1 className="admin__courses__heading--primary">Add project</h1>
 				{this.renderForm()}
 			</section>
 		);
 	}
 }
 
-export default AddCourse;
+export default AddProject;

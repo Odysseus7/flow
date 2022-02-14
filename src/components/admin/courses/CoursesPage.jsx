@@ -24,10 +24,7 @@ class CoursesPage extends Component {
 	}
 
 	updateCourseList = (course) => {
-		console.log(course);
-		this.setState({ courses: [...this.state.courses, course] }, () =>
-			console.log(this.state)
-		);
+		this.setState({ courses: [...this.state.courses, course] });
 	};
 
 	render() {

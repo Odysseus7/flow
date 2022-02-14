@@ -3,7 +3,7 @@ import base from "../apis/base";
 export const fetchCourses = () => async (dispatch) => {
 	const response = await base.get("/courses");
 	dispatch({
-		type: "FETCH_COURSES",
+		type: "FETCH_ACTIVE_COURSES",
 		payload: response.data,
 	});
 };
@@ -11,7 +11,7 @@ export const fetchCourses = () => async (dispatch) => {
 export const fetchAllCourses = () => async (dispatch) => {
 	const response = await base.get("/courses/all");
 	dispatch({
-		type: "FETCH_COURSES",
+		type: "FETCH_ALL_COURSES",
 		payload: response.data,
 	});
 };
