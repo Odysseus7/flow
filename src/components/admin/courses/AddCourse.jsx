@@ -7,7 +7,7 @@ import {
 
 // TO DO
 /**
- * Update state upon saved course
+ * Update state upon saved course DONE
  * Add form validation
  */
 
@@ -20,8 +20,16 @@ class AddCourse extends Component {
 			description: "",
 			author: "",
 			URL: "",
+			validURL: "",
 		};
 	}
+
+	urlPatternValidation = (URL) => {
+		const regex = new RegExp(
+			"(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?"
+		);
+		return regex.test(URL);
+	};
 
 	saveCourse = async (course) => {
 		await admin
@@ -36,7 +44,15 @@ class AddCourse extends Component {
 	};
 
 	handleChange = (event) => {
-		this.setState({ [event.target.name]: event.target.value });
+		const value = event.target.value;
+		const name = event.target.name;
+		if (name === "URL") {
+			const validURL = !value || this.urlPatternValidation(value);
+			this.setState({
+				validURL,
+			});
+		}
+		this.setState({ [name]: value });
 	};
 
 	handleOnSubmit = (event) => {
@@ -55,6 +71,7 @@ class AddCourse extends Component {
 					className="admin__add__input admin__title"
 					value={this.state.title}
 					onChange={this.handleChange}
+					minLength="10"
 					required
 				/>
 
@@ -65,6 +82,7 @@ class AddCourse extends Component {
 					placeholder="Description"
 					className="admin__add__description"
 					rows="7"
+					minLength="20"
 					value={this.state.description}
 					onChange={this.handleChange}
 					required
@@ -76,6 +94,7 @@ class AddCourse extends Component {
 					placeholder="Author"
 					type="text"
 					className="admin__add__input"
+					minLength="10"
 					value={this.state.author}
 					onChange={this.handleChange}
 					required
@@ -88,9 +107,13 @@ class AddCourse extends Component {
 					type="text"
 					className="admin__add__input"
 					value={this.state.URL}
+					minLength="3"
 					onChange={this.handleChange}
 					required
 				/>
+				{!this.state.validURL && this.state.validURL !== "" && (
+					<p className="urlValidationText">URL is invalid.</p>
+				)}
 				<button type="submit" className="btn draw">
 					Save changes
 				</button>
