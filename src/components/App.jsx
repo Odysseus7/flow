@@ -16,6 +16,7 @@ import CoursesPage from "./admin/courses/CoursesPage";
 import { ToastContainer, Slide } from "react-toastify";
 import BackBtn from "./BackBtn";
 import ProjectsPage from "./admin/projects/ProjectsPage";
+import BooksPage from "./admin/books/BooksPage";
 
 const App = () => {
 	const location = useLocation();
@@ -35,6 +36,7 @@ const App = () => {
 			<ProtectedRoute exact path="/admin/dashboard" component={Welcome} />
 			<ProtectedRoute exact path="/admin/projects" component={ProjectsPage} />
 			<ProtectedRoute exact path="/admin/courses" component={CoursesPage} />
+			<ProtectedRoute exact path="/admin/books" component={BooksPage} />
 			<ToastContainer
 				position="top-center"
 				autoClose={3000}

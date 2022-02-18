@@ -14,4 +14,9 @@ export const cardData = [
 		path: "admin/books",
 		description: "Add or delete a book",
 	},
+	{
+		title: "My account",
+		path: "admin/account",
+		description: "Change account details",
+	},
 ];

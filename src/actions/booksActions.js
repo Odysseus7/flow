@@ -1,9 +1,17 @@
-import base from '../apis/base';
+import base from "../apis/base";
 
-export const fetchBooks = () => async dispatch => {
-    const response = await base.get('/books');
-    dispatch({
-        type: "FETCH_BOOKS",
-        payload: response.data
-    });
-}
+export const fetchBooks = () => async (dispatch) => {
+	const response = await base.get("/books");
+	dispatch({
+		type: "FETCH_ACTIVE_BOOKS",
+		payload: response.data,
+	});
+};
+
+export const fetchAllBooks = () => async (dispatch) => {
+	const response = await base.get("/books/all");
+	dispatch({
+		type: "FETCH_ALL_BOOKS",
+		payload: response.data,
+	});
+};
