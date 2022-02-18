@@ -14,7 +14,7 @@ const Cards = () => {
 		));
 	};
 
-	return <div className="cards cards__admin">{renderCards()}</div>;
+	return <div className="cards__admin">{renderCards()}</div>;
 };
 
 export default Cards;
