@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchAllProjects } from "../../../actions/projectsActions";
-import AddCourse from "./AddProject";
+import AddProject from "./AddProject";
 import EditProject from "./EditProject";
 
 class ProjectsPage extends Component {
@@ -15,6 +15,7 @@ class ProjectsPage extends Component {
 
 	componentDidMount() {
 		this.props.fetchAllProjects();
+		console.log(this.props);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -23,7 +24,7 @@ class ProjectsPage extends Component {
 		}
 	}
 
-	updateCourseList = (project) => {
+	updateProjectsList = (project) => {
 		this.setState({ projects: [...this.state.projects, project] });
 	};
 
@@ -32,7 +33,7 @@ class ProjectsPage extends Component {
 			<main>
 				<section className="admin__courses__container">
 					<EditProject projects={this.state.projects} />
-					<AddCourse updateCourseList={this.updateCourseList} />
+					<AddProject updateProjectsList={this.updateProjectsList} />
 				</section>
 			</main>
 		);

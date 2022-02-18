@@ -11,7 +11,7 @@ export const fetchProjects = () => async (dispatch) => {
 export const fetchAllProjects = () => async (dispatch) => {
 	const response = await base.get("/projects/all");
 	dispatch({
-		type: "FETCH_PROJECTS",
+		type: "FETCH_ALL_PROJECTS",
 		payload: response.data,
 	});
 };

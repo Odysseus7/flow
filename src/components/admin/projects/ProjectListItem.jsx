@@ -17,7 +17,7 @@ class ProjectListItem extends Component {
 			URL: props.URL,
 			githubURL: props.githubURL,
 			status: props.status,
-			images: props.images,
+			image: props.image,
 			updatedTitle: props.name,
 			updatedStatus: props.isActive,
 		};
@@ -108,6 +108,17 @@ class ProjectListItem extends Component {
 					className="admin__textarea"
 					rows="7"
 					value={this.state.description}
+					onChange={this.handleChange}
+					required
+				/>
+
+				<input
+					label="image"
+					name="image"
+					placeholder="Image URL"
+					type="text"
+					className="admin__input"
+					value={this.state.image}
 					onChange={this.handleChange}
 					required
 				/>

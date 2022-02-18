@@ -33,7 +33,7 @@ class AddProject extends Component {
 			.post(`/projects`, project)
 			.then((response) => {
 				this.props.updateProjectsList(response.data);
-				successNotification("project has successfully been added");
+				successNotification("Project has successfully been added");
 			})
 			.catch((error) => {
 				errorNotification("An unexpected error occured");
