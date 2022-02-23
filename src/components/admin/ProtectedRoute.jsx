@@ -13,7 +13,7 @@ export const checkToken = (token, history) => {
 		}
 	} catch {
 		localStorage.removeItem("token");
-		localStorage.removeItem("isAuthenticated", false);
+		localStorage.removeItem("isAuthenticated");
 		history.push("/admin/login");
 	}
 };
