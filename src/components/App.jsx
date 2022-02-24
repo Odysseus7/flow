@@ -8,7 +8,7 @@ import BookList from "./books/BookList";
 import About from "./about/About";
 import Setup from "./setup/Setup";
 import Contact from "./contact/Contact";
-import Login from "../admin/Login";
+import Login from "./admin/Login";
 import ProtectedRoute from "./admin/ProtectedRoute";
 import Header from "./shared/Header";
 import Welcome from "./admin/dashboard/Welcome";

@@ -36,6 +36,10 @@ class EditAccount extends Component {
 		}
 	};
 
+	resetForm = () => {
+		this.setState({ oldPassword: "", newPassword: "" });
+	};
+
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
 	};
@@ -48,11 +52,11 @@ class EditAccount extends Component {
 	changePassword = async (passwords) => {
 		await admin
 			.post(`/users/${this.getId()}`, passwords)
-			.then((response) => {
+			.then(() => {
 				successNotification("Changes are successfully saved");
-				this.setState({ oldPassword: "", newPassword: "" });
+				this.resetForm();
 			})
-			.catch((error) => {
+			.catch(() => {
 				errorNotification("An unexpected error occured");
 			});
 	};
@@ -94,19 +98,17 @@ class EditAccount extends Component {
 
 	renderModalBtn = () => {
 		return (
-			<article className="admin__courses__button__container">
-				<ModalBtn buttonLabel="Change password">{this.renderForm()}</ModalBtn>
-			</article>
+			<ModalBtn buttonLabel="Change password">{this.renderForm()}</ModalBtn>
 		);
 	};
 	render() {
 		return (
-			<section className="admin__account">
-				<section className="intro">
-					<article className="intro__subtext">Hi {this.getUsername()}!</article>
+			<main class="admin__account">
+				<section className="admin__greeting">
+					<p>Hi {this.getUsername()}!</p>
+					{this.renderModalBtn()}
 				</section>
-				{this.renderModalBtn()}
-			</section>
+			</main>
 		);
 	}
 }
