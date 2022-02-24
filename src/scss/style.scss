@@ -178,12 +178,10 @@ body {
 /* MEDIA QUERIES */
 @media only screen and(min-width: 1200px) {
 	.intro {
-		margin: 2.5rem 0 1rem 6rem;
+		margin: 1.5rem 0 1rem 6rem;
 	}
 
 	.cards {
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
 		&_home {
 			margin-top: 0;
 		}

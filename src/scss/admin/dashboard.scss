@@ -21,14 +21,10 @@
 	}
 }
 
-.admin__cards__container {
-	margin-top: 2rem;
-}
-
 .cards__admin {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	margin: 3rem 0;
+	margin: 1rem 0;
 	justify-items: center;
 	width: 75%;
 	grid-column-gap: 5rem;

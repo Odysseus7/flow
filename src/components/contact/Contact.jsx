@@ -1,15 +1,16 @@
-import React from "react";
-import emailjs from "emailjs-com";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 
-function Contact(props) {
+function Contact() {
+	const form = useRef();
 	const SERVICE_ID = process.env.REACT_APP_EMAIL_SERVICEID;
 	const TEMPLATE_ID = process.env.REACT_APP_EMAIL_TEMPLATEID;
 	const USER_ID = process.env.REACT_APP_EMAIL_USERID;
 
-	const handleOnSubmit = (e) => {
-		e.preventDefault();
-		emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID).then(
+	const handleOnSubmit = (event) => {
+		event.preventDefault();
+		emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, USER_ID).then(
 			(result) => {
 				Swal.fire({
 					icon: "success",
@@ -24,14 +25,14 @@ function Contact(props) {
 				});
 			}
 		);
-		e.target.reset();
+		event.target.reset();
 	};
 
 	return (
 		<section className="main main__contact">
 			<main className="contact__form__container">
 				<h1 className="primary-heading">Send me a message!</h1>
-				<form onSubmit={handleOnSubmit} className="contact__form">
+				<form ref={form} onSubmit={handleOnSubmit} className="contact__form">
 					<fieldset className="contact__input__container">
 						<input
 							id="form-input-control-email"
