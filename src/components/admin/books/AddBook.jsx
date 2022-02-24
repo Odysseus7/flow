@@ -33,7 +33,7 @@ class AddBook extends Component {
 				this.props.updateBookList(response.data);
 				successNotification("Book has successfully been added");
 			})
-			.catch((error) => {
+			.catch(() => {
 				errorNotification("An unexpected error occured");
 			});
 	};
